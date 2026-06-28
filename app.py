@@ -30,6 +30,16 @@ absolute_path = os.path.join(script_dir, filename)
 try: 
     with open(absolute_path, "r") as file:
         lines = file.readlines()
+    counter = 0 
+    for line in lines: 
+        counter += 1
+    if counter != 1: 
+        print("invalid FASTA file")
+        if counter < 1:
+            print("This is not a FASTA file")
+        if counter > 1:
+            print("This system can't handle more than one FASTA file")
+        exit()
     if lines[0].startswith(">"):
         sequence_name = lines[0].replace(">", "").strip()
     else:
@@ -75,7 +85,7 @@ for amino_acid, frequency in count.items():
     amino_acid_total_weight = frequency * (weight)
     total_molecular_weight = total_molecular_weight + amino_acid_total_weight
 print(f"total molecular weight of sequence: {total_molecular_weight: .2f} g/mol")
-
+exit()
 
 
 
